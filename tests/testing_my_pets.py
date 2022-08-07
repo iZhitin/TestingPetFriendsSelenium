@@ -4,11 +4,16 @@ import math
 # импортируем функционал теста авторизации из соседнего файла
 from main_functionalities import test_auth
 
+# импортируем объекты для явного ожидания
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 # запуск тестов через терминал при помощи команды
 # pytest -v --driver Chrome --driver-path chromedriver.exe tests/testing_my_pets.py
 # для запуска конкретного теста:
-# # pytest -v --driver Chrome --driver-path chromedriver.exe tests/testing_my_pets::test_presence_of_all_my_pets
-
+# pytest -v --driver Chrome --driver-path chromedriver.exe tests/testing_my_pets::test_presence_of_all_my_pets
+# или pytest -v --driver Chrome --driver-path chromedriver.exe tests/testing_my_pets.py::test_presence_of_all_my_pets
 # web_browser = selenium, так это указано conftest.py
 
 
@@ -18,8 +23,12 @@ def test_presence_of_all_my_pets(web_browser):
     test_auth(web_browser)
 
     # открываем вкладку мои животные
-    my_pets = web_browser.find_element_by_xpath('//*[@href=\"/my_pets\"]')
+    # my_pets = web_browser.find_element_by_xpath('//*[@href=\"/my_pets\"]')
+    # применим явное ожидание (ожидание по присутствию элемента)
+    my_pets = WebDriverWait(web_browser, 10).until(
+        EC.presence_of_element_located((By.XPATH, '//*[@href=\"/my_pets\"]')))
     my_pets.click()
+
 
     # получаем список с количеством строк (блоков), где содержится информация о конкретном животном
     list_of_pets = web_browser.find_elements_by_xpath('//tbody/tr')

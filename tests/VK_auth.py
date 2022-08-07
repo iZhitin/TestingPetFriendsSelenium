@@ -1,7 +1,9 @@
 import time
 from selenium import webdriver
+
+
 # возможность запуска тестов без терминала, нужно использовать драйвер внутри теста
-def test_VK():
+def test_vk():
     email = '...'
     password = '...'
 

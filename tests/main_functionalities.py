@@ -6,10 +6,12 @@ from faker import Faker
 fake = Faker()
 
 
+
 # запуск тестов через терминал при помощи команды
 # pytest -v --driver Chrome --driver-path chromedriver.exe tests/main_functionalities.py
 # для запуска конкретного теста:
-# # pytest -v --driver Chrome --driver-path chromedriver.exe tests/main_functionalities::test_reg
+# pytest -v --driver Chrome --driver-path chromedriver.exe tests/main_functionalities::test_reg
+# или pytest -v --driver Chrome --driver-path chromedriver.exe tests/main_functionalities.py::test_reg
 
 
 class RegisterUser:
@@ -97,6 +99,8 @@ def test_auth(web_browser):
 
 # тестирования добавления животного с фото
 def test_create_pet_with_photo(web_browser):
+    # зададим неявное ожидание
+    web_browser.implicitly_wait(5)
     # авторизация
     test_auth(web_browser)
     time.sleep(2)
@@ -146,6 +150,8 @@ def test_create_pet_with_photo(web_browser):
 
 # тестирования добавления животного без фото
 def test_create_pet_without_photo(web_browser):
+    # зададим неявное ожидание
+    web_browser.implicitly_wait(5)
     # авторизация
     test_auth(web_browser)
     time.sleep(2)
@@ -191,6 +197,8 @@ def test_create_pet_without_photo(web_browser):
 
 # тестирования удаления животного
 def test_delete_pet(web_browser):
+    # зададим неявное ожидание
+    web_browser.implicitly_wait(5)
     # авторизация
     test_auth(web_browser)
     time.sleep(2)

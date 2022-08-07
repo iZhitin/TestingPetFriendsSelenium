@@ -17,6 +17,11 @@ def pytest_runtest_makereport(item, call):
 @pytest.fixture
 def web_browser(request, selenium):
 
+    # в тестах встречаются явные ожидания - time.sleep() и более сложные
+    # одновременное применение явных и неявных ожиданий - НЕ ЖЕЛАТЕЛЬНО
+    # зададим неявное ожидание В ЦЕЛЯХ ЭКСПЕРИМЕНТА
+    selenium.implicitly_wait(5)
+
     browser = selenium
     browser.set_window_size(1400, 1000)
 
