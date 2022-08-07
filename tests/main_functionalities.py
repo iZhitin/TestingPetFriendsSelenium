@@ -7,7 +7,9 @@ fake = Faker()
 
 
 # запуск тестов через терминал при помощи команды
-# pytest -v --driver Chrome --driver-path chromedriver.exe tests/TestingPetFriendsSelenium.py
+# pytest -v --driver Chrome --driver-path chromedriver.exe tests/main_functionalities.py
+# для запуска конкретного теста:
+# # pytest -v --driver Chrome --driver-path chromedriver.exe tests/main_functionalities::test_reg
 
 
 class RegisterUser:
@@ -19,7 +21,7 @@ class RegisterUser:
         return name, email, password
 
 
-# web_browser = selenium, так это указано conftest.py
+# web_browser = selenium, так как это указано в conftest.py
 
 # тестирование регистрации
 def test_reg(web_browser):
@@ -212,6 +214,8 @@ def test_delete_pet(web_browser):
     # web_browser.execute_script("arguments[0].scrollIntoView();", delete_last_pet)
     # delete_last_pet.scroll_to_element(web_browser.find_element_by_xpath('(//a[@title="Удалить питомца"])[1295]'))
 
+
+# попытки сохранить  cookie
 # save cookies of the browser after the login
 # with open('my_cookies.txt', 'wb') as cookies:
 #     pickle.dump(web_browser.get_cookies(), cookies)
