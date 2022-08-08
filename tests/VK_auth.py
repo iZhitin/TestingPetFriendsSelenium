@@ -3,7 +3,7 @@ from selenium import webdriver
 
 
 # возможность запуска тестов без терминала, нужно использовать драйвер внутри теста
-def test_vk():
+def test_vk_auth():
     email = '...'
     password = '...'
 

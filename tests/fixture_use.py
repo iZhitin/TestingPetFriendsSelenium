@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
 
-
+# в данном случае pytest.driver эквивалентно pytest_driver
 @pytest.fixture(autouse=True)
 def testing():
    pytest.driver = webdriver.Chrome(r"C:\Users\IvanZ\YandexDisk\IT\python_work\AUTOMATION\toGitHub\TestingPetFriendsSelenium\chromedriver.exe")
